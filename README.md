@@ -475,3 +475,17 @@ param basicMaxSizeBytes = 2147483648
 * Inclusión de cadena de conexión en App Settings.
 * Corrección de linter: `sqlHostSuffix` parametrizado con `environment().suffixes.sqlServerHostname`.
 * Ejemplo `.bicepparam` incluido.
+
+## Visualizacion del despliegue
+
+1) Coinsole In:
+
+![consoleIn](deploy-screenshoots/deploy-console-in.png)
+
+2) Console out:
+
+![consoleOut](deploy-screenshoots/deploy-console-out.png)
+
+3) POV Azure GUI deployed resources
+
+![consoleOut](deploy-screenshoots/deploy-gui-azure.png)
