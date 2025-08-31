@@ -1,0 +1,6 @@
+RG="rg-iac-prod"
+
+az deployment group create \
+  --resource-group $RG \
+  --template-file main.bicep \
+  --parameters main.prod.bicepparam

@@ -1,0 +1,7 @@
+az group create -n rg-iac-demo -l eastus
+
+az deployment group create `
+  --resource-group rg-iac-demo `
+  --template-file .\main.bicep `
+  --parameters .\main.demo.bicepparam
+

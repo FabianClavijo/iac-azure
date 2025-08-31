@@ -1,0 +1,26 @@
+# Archivos locales y secretos
+*.bicepparam.local.json
+*.bicepparam.local
+*.env
+secrets.json
+
+# Salida de compilaciones Bicep
+*.json
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Visual Studio Code
+.vscode/
+
+# Entornos virtuales Python (si se prueban scripts auxiliares)
+venv/
+__pycache__/
+
+# Archivos temporales
+*.tmp
+*.bak

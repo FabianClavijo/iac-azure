@@ -1,0 +1,30 @@
+# Variables
+SUB="<tu-sub-id>"
+RG="rg-iac-prod"
+LOC="eastus"
+KV_NAME="kv-iac-prod"
+SECRET_NAME="SqlPassword"
+SECRET_VALUE="Cambia#EstaClave_Segura123"
+
+az account set --subscription $SUB
+az group create -n $RG -l $LOC
+
+# Crear Key Vault
+az keyvault create -n $KV_NAME -g $RG -l $LOC
+
+# Guardar secreto
+az keyvault secret set --vault-name $KV_NAME --name $SECRET_NAME --value "$SECRET_VALUE"
+
+# Opción A (rápida): permitir plantillas ARM/Bicep a leer secretos
+az keyvault update -n $KV_NAME -g $RG --enabled-for-template-deployment true
+
+# (Alternativa B RBAC) Asignar rol "Key Vault Secrets User" a la identidad que despliega
+# PRUEBA: si despliegas con usuario interactivo
+PRINCIPAL_ID="$(az ad signed-in-user show --query id -o tsv)"
+KV_ID="$(az keyvault show -n $KV_NAME -g $RG --query id -o tsv)"
+
+az role assignment create \
+  --assignee-object-id $PRINCIPAL_ID \
+  --assignee-principal-type User \
+  --role "Key Vault Secrets User" \
+  --scope "$KV_ID"
